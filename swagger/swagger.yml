@@ -1,0 +1,490 @@
+openapi: 3.0.4
+info:
+  title: E-Commerce API
+  description: |
+    This API powers an e-commerce platform.
+    It provides endpoints for:
+    - Product listing
+    - User authentication
+    - Cart management
+    - Orders
+    - Wishlists
+  termsOfService: https://swagger.io/terms/
+  version: 1.0.12
+
+paths:
+  /api/auth/register:
+    post:
+      summary: Register a new user
+      tags: [Auth]
+      responses:
+        201:
+          description: User registered successfully
+
+  /api/auth/login:
+    post:
+      summary: User login
+      tags: [Auth]
+      responses:
+        200:
+          description: User logged in successfully
+
+  /api/users:
+    get:
+      summary: Get all users
+      tags: [Users]
+      responses:
+        200:
+          description: A list of users
+
+  /api/users/{id}:
+    get:
+      summary: Get a user by ID
+      tags: [Users]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: User data
+    patch:
+      summary: Update user by ID
+      tags: [Users]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: User updated
+    delete:
+      summary: Delete user by ID
+      tags: [Users]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: User deleted
+
+  /api/users/get/count:
+    get:
+      summary: Get total number of users
+      tags: [Users]
+      responses:
+        200:
+          description: Total user count
+
+  /api/categories:
+    get:
+      summary: Get all categories
+      tags: [Categories]
+      responses:
+        200:
+          description: A list of categories
+    post:
+      summary: Create a new category
+      tags: [Categories]
+      responses:
+        201:
+          description: Category created
+
+  /api/categories/{id}:
+    get:
+      summary: Get category by ID
+      tags: [Categories]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Category data
+    patch:
+      summary: Update category by ID
+      tags: [Categories]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Category updated
+    delete:
+      summary: Delete category by ID
+      tags: [Categories]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Category deleted
+
+  /api/products:
+    get:
+      summary: Get all products
+      tags: [Products]
+      responses:
+        200:
+          description: A list of products
+    post:
+      summary: Create a new product
+      tags: [Products]
+      responses:
+        201:
+          description: Product created
+
+  /api/products/{id}:
+    get:
+      summary: Get product by ID
+      tags: [Products]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product data
+    patch:
+      summary: Update product by ID
+      tags: [Products]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product updated
+    delete:
+      summary: Delete product by ID
+      tags: [Products]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product deleted
+
+  /api/products/get/count:
+    get:
+      summary: Get product count
+      tags: [Products]
+      responses:
+        200:
+          description: Total product count
+
+  /api/products/get/featured/{count}:
+    get:
+      summary: Get featured products
+      tags: [Products]
+      parameters:
+        - name: count
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Featured products
+
+  /api/products/gallery-images/{id}:
+    patch:
+      summary: Update product gallery images
+      tags: [Products]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product gallery updated
+
+  /api/orders:
+    get:
+      summary: Get all orders
+      tags: [Orders]
+      responses:
+        200:
+          description: A list of orders
+    post:
+      summary: Create a new order
+      tags: [Orders]
+      responses:
+        201:
+          description: Order created
+
+  /api/orders/{id}:
+    get:
+      summary: Get order by ID
+      tags: [Orders]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Order data
+    patch:
+      summary: Update order status
+      tags: [Orders]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Order status updated
+    delete:
+      summary: Delete order by ID
+      tags: [Orders]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Order deleted
+
+  /api/orders/get/totalsales:
+    get:
+      summary: Get total sales amount
+      tags: [Orders]
+      responses:
+        200:
+          description: Total sales calculated
+
+  /api/orders/get/count:
+    get:
+      summary: Get total number of orders
+      tags: [Orders]
+      responses:
+        200:
+          description: Total order count
+
+  /api/cart:
+    get:
+      summary: Get user's cart
+      tags: [Cart]
+      responses:
+        200:
+          description: User's cart
+    post:
+      summary: Add product(s) to cart
+      tags: [Cart]
+      responses:
+        201:
+          description: Product(s) added to cart
+
+  /api/cart/{id}:
+    patch:
+      summary: Update quantity of product in cart
+      tags: [Cart]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Cart updated
+    delete:
+      summary: Remove product from cart
+      tags: [Cart]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product removed from cart
+
+  /api/wishlist:
+    get:
+      summary: Get user's wishlist
+      tags: [Wishlist]
+      responses:
+        200:
+          description: Wishlist retrieved
+    post:
+      summary: Add product(s) to wishlist
+      tags: [Wishlist]
+      responses:
+        201:
+          description: Product(s) added to wishlist
+
+  /api/wishlist/{id}:
+    delete:
+      summary: Remove product from wishlist
+      tags: [Wishlist]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product removed from wishlist
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        street:
+          type: string
+        apartment:
+          type: string
+        city:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        phone:
+          type: number
+        isAdmin:
+          type: boolean
+
+    Category:
+      type: object
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+        icon:
+          type: string
+
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        richDescription:
+          type: string
+        image:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+        brand:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        countInStock:
+          type: number
+        rating:
+          type: number
+        numReviews:
+          type: number
+        isFeatured:
+          type: boolean
+
+    CartItem:
+      type: object
+      properties:
+        product:
+          type: string
+        quantity:
+          type: number
+
+    Cart:
+      type: object
+      properties:
+        cartItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
+        totalPrice:
+          type: number
+        user:
+          type: string
+
+    OrderItem:
+      type: object
+      properties:
+        product:
+          type: string
+        quantity:
+          type: number
+
+    Order:
+      type: object
+      properties:
+        orderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        shippingAddress1:
+          type: string
+        shippingAddress2:
+          type: string
+        city:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        phone:
+          type: number
+        status:
+          type: string
+        totalPrice:
+          type: number
+        user:
+          type: string
+
+    Wishlist:
+      type: object
+      properties:
+        wishlistItems:
+          type: array
+          items:
+            type: string
+        user:
+          type: string
